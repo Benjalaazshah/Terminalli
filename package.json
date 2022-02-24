@@ -1,0 +1,27 @@
+{
+  "name": "terminalli",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./sources/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Benjalaazshah/Terminalli.git"
+  },
+  "keywords": [
+    "console",
+    "debug",
+    "debugger",
+    "log",
+    "logger",
+    "terminal"
+  ],
+  "author": "Benjalazshah",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Benjalaazshah/Terminalli/issues"
+  },
+  "homepage": "https://github.com/Benjalaazshah/Terminalli#readme"
+}
