@@ -1,38 +1,38 @@
 {
-  "name": "terminalli",
-  "version": "1.0.0",
-  "description": "",
-  "main": "./sources/index.ts",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Benjalaazshah/Terminalli.git"
-  },
-  "keywords": [
-    "console",
-    "debug",
-    "debugger",
-    "log",
-    "logger",
-    "terminal"
-  ],
-  "author": "Benjalazshah",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Benjalaazshah/Terminalli/issues"
-  },
-  "homepage": "https://github.com/Benjalaazshah/Terminalli#readme",
-  "devDependencies": {
-    "@types/node": "^17.0.21",
-    "@typescript-eslint/eslint-plugin": "^5.12.1",
-    "@typescript-eslint/parser": "^5.12.1",
-    "eslint": "^8.9.0",
-    "eslint-config-prettier": "^8.4.0",
-    "prettier": "2.5.1"
-  },
-  "dependencies": {
-    "kleur": "^4.1.4"
-  }
+	"name": "terminalli",
+	"version": "1.0.0",
+	"description": "",
+	"main": "./sources/index.ts",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Benjalaazshah/Terminalli.git"
+	},
+	"keywords": [
+		"console",
+		"debug",
+		"debugger",
+		"log",
+		"logger",
+		"terminal"
+	],
+	"author": "Benjalazshah",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/Benjalaazshah/Terminalli/issues"
+	},
+	"homepage": "https://github.com/Benjalaazshah/Terminalli#readme",
+	"devDependencies": {
+		"@types/node": "^17.0.21",
+		"@typescript-eslint/eslint-plugin": "^5.12.1",
+		"@typescript-eslint/parser": "^5.12.1",
+		"eslint": "^8.9.0",
+		"eslint-config-prettier": "^8.4.0",
+		"prettier": "2.5.1"
+	},
+	"dependencies": {
+		"kleur": "^4.1.4"
+	}
 }
