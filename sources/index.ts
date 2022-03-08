@@ -62,7 +62,7 @@ export default class Terminal {
 		}
 
 		output += `${message}\n`;
-		process.stdout.write(output);
+		(level === "ERROR" ? process.stderr : process.stdout).write(output);
 		this.timeInLastLog = time;
 	}
 
