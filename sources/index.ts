@@ -1,5 +1,8 @@
 import C from "kleur";
 
+/**
+ * Data for the `Terminal` class.
+ */
 export interface TerminalData {
 	showDate: boolean;
 	showLevelName: boolean;
@@ -8,9 +11,23 @@ export interface TerminalData {
 	showTimestampRelativeToLastLog: boolean;
 }
 
+/**
+ * Represents the console.
+ */
 export default class Terminal {
+	/**
+	 * Customization options that were inputted when this terminal instance was created.
+	 */
 	readonly data: TerminalData;
+
+	/**
+	 * The time when this terminal instance was created.
+	 */
 	readonly startTime: Date;
+
+	/**
+	 * The time when the last message was logged to the terminal.
+	 */
 	timeInLastLog: Date;
 
 	private _log(level: "ERROR" | "LOG", message: string) {
@@ -66,14 +83,26 @@ export default class Terminal {
 		this.timeInLastLog = time;
 	}
 
+	/**
+	 * Logs a message to the `process.stdout`.
+	 * @param message The message to be logged to the terminal.
+	 */
 	log(message: string) {
 		this._log("LOG", message);
 	}
 
-	error(message: string) {
-		this._log("ERROR", message);
+	/**
+	 * Logs an error message to `process.stderr`.
+	 * @param errorMessage The error message to be logged to the terminal.
+	 */
+	error(errorMessage: string) {
+		this._log("ERROR", errorMessage);
 	}
 
+	/**
+	 * Represents the console.
+	 * @param data Customization options for the terminal.
+	 */
 	constructor(data?: Partial<TerminalData>) {
 		const defaultData: TerminalData = {
 			showDate: true,
