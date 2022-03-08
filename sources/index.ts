@@ -8,7 +8,7 @@ export interface TerminalData {
 	showTimestampRelativeToLastLog: boolean;
 }
 
-export class Terminal {
+export default class Terminal {
 	readonly data: TerminalData;
 	readonly startTime: Date;
 	timeInLastLog: Date;
