@@ -66,6 +66,14 @@ export default class Terminal {
 		this.timeInLastLog = time;
 	}
 
+	log(message: string) {
+		this._log("LOG", message);
+	}
+
+	error(message: string) {
+		this._log("ERROR", message);
+	}
+
 	constructor(data?: Partial<TerminalData>) {
 		const defaultData: TerminalData = {
 			showDate: true,
