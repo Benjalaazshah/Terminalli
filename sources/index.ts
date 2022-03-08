@@ -1,6 +1,7 @@
 import C from "kleur";
 
 export interface TerminalData {
+	showDate: boolean;
 	showLevelName: boolean;
 	showRelativeTimestamp: boolean;
 	showTimestamp: boolean;
@@ -43,9 +44,12 @@ export class Terminal {
 		if (this.data.showLevelName) output += `[ ${levelColor(level)} ]\t`;
 
 		// Should look like: [ 12d/5m/2011y | 13:43:10.23 ]
-		if (this.data.showTimestamp) {
-			output += `[ ${levelColor(`${time.getDate()}d/${time.getMonth()}m/${time.getFullYear()}y`)} |`;
-			output += ` ${levelColor(`${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}.${time.getMilliseconds()}`)} ]\t`;
+		if (this.data.showDate || this.data.showTimestamp) {
+			output += "[ ";
+			if (this.data.showDate) output += levelColor(`${time.getDate()}d/${time.getMonth()}m/${time.getFullYear()}y`) + " ";
+			if (this.data.showDate && this.data.showTimestamp) output += "| ";
+			if (this.data.showTimestamp) output += levelColor(`${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}.${time.getMilliseconds()}`) + " ";
+			output += "]\t";
 		}
 
 		// Should look like: [ 5y 1m 15h 51min 7s 300ms | +31min +5s +903ms ]
@@ -63,7 +67,8 @@ export class Terminal {
 	}
 
 	constructor(data?: Partial<TerminalData>) {
-		const defaultData = {
+		const defaultData: TerminalData = {
+			showDate: true,
 			showLevelName: false,
 			showRelativeTimestamp: true,
 			showTimestamp: true,
