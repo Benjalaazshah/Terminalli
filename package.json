@@ -15,9 +15,13 @@
 		"debug",
 		"debugger",
 		"log",
+		"logs",
 		"logger",
 		"nodejs",
-		"terminal"
+		"terminal",
+		"time",
+		"timestamp",
+		"timestamps"
 	],
 	"author": "Benjalazshah",
 	"license": "MIT",
