@@ -1,7 +1,7 @@
 {
 	"name": "terminalli",
 	"version": "1.0.0",
-	"description": "",
+	"description": "This NPM package adds helpful timestamps to your logs to help you know when things happen. It is customizable as well!",
 	"main": "./sources/index.ts",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1"
