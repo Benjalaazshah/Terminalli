@@ -1,5 +1,9 @@
 # TERMINALLI
 
+![Install](https://img.shields.io/badge/INSTALL-npm%20i%20termialli-ff0000.svg?style=flat-square&logo=npm)
+![Size](https://img.shields.io/github/repo-size/Benjalaazshah/Terminalli?color=000080&label=SIZE&style=flat-square)
+![License](https://img.shields.io/github/license/Benjalaazshah/Terminalli?color=008000&label=LICENSE&style=flat-square)
+
 This NPM package adds helpful timestamps to your logs to help you know when things happen. It is customizable as well!
 
 ![Terminalli Example Image](./media/terminalli_example_image.png)
