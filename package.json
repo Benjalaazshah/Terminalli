@@ -16,6 +16,7 @@
 		"debugger",
 		"log",
 		"logger",
+		"nodejs",
 		"terminal"
 	],
 	"author": "Benjalazshah",
