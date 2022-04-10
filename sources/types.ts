@@ -1,3 +1,6 @@
+/**
+ * Customization options for the `Terminal` class.
+ */
 export interface TerminalData {
 	/**
 	 * If true, each message logged to the terminal will have a date corresponding to when the message was logged attached to it.
