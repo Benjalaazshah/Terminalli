@@ -1,14 +1,15 @@
 // import C from "kleur";
-import { TerminalData } from "./types";
+import { Level, TerminalConstructorData, TerminalData } from "./types";
 
 /**
  * Represents the console.
  */
-export default class Terminal {
+export default class Terminal<L extends Level[]> {
 	/**
 	 * Customization options that were inputted when this terminal instance was created.
 	 */
 	readonly data: TerminalData;
+	readonly log: Record<L[number]["name"], (message: string) => void>;
 
 	/**
 	 * The time when this terminal instance was created.
@@ -20,7 +21,7 @@ export default class Terminal {
 	 */
 	timeInLastLog: Date;
 
-	constructor(data?: Partial<TerminalData>) {
+	constructor(data?: Partial<TerminalConstructorData<L>>) {
 		const defaultData: TerminalData = {
 			levels: [
 				{ color: ["black", "bold"], name: "trace" },
