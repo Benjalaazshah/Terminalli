@@ -21,10 +21,10 @@ export default class Terminal<L extends Level[]> {
 	 */
 	timeInLastLog: Date;
 
-	private _log(level: "ERROR" | "LOG", message: string) {
+	private _log(level: Level, message: string) {
 		const time = new Date();
+		let levelColor = C[level.color[0]];
 		let output = "";
-		const levelColor = level === "ERROR" ? (x: string) => C.underline().dim().red(x) : (x: string) => C.bold().black(x);
 
 		function formatChangeInTime(from: Date, prefix: string) {
 			let formattedChangeInTime = "";
@@ -48,8 +48,10 @@ export default class Terminal<L extends Level[]> {
 			return formattedChangeInTime;
 		}
 
+		for (let i = 1; i <= level.color.length; i++) levelColor = levelColor()[level.color[i]];
+
 		// Should look like: [ ERROR ]
-		if (this.data.showLevelName) output += `[ ${levelColor(level)} ]\t`;
+		if (this.data.showLevelName) output += `[ ${levelColor(level.name)} ]\t`;
 
 		// Should look like: [ 12d/5m/2011y | 13:43:10.23 ]
 		if (this.data.showDate || this.data.showTimestamp) {
@@ -70,15 +72,15 @@ export default class Terminal<L extends Level[]> {
 		}
 
 		output += `${message}\n`;
-		(level === "ERROR" ? process.stderr : process.stdout).write(output);
+		(level.isError ? process.stderr : process.stdout).write(output);
 		this.timeInLastLog = time;
 	}
 
 	constructor(data?: Partial<TerminalConstructorData<L>>) {
 		const defaultData: TerminalData = {
 			levels: [
-				{ color: ["black", "bold"], name: "trace" },
-				{ color: ["red", "underline"], name: "error" }
+				{ color: ["black", "bold"], name: "trace", isError: false },
+				{ color: ["red", "underline"], name: "error", isError: true }
 			],
 
 			showDate: true,
