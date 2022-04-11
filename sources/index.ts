@@ -38,6 +38,8 @@ export interface TerminalData {
 	 * `[ +31min +5s +903ms ] It took forever!`
 	 */
 	showTimestampRelativeToLastLog: boolean;
+
+	use24HourClock: boolean;
 }
 
 /**
@@ -138,7 +140,8 @@ export default class Terminal {
 			showLevelName: false,
 			showRelativeTimestamp: true,
 			showTimestamp: true,
-			showTimestampRelativeToLastLog: true
+			showTimestampRelativeToLastLog: true,
+			use24HourClock: true
 		};
 
 		this.startTime = new Date();
