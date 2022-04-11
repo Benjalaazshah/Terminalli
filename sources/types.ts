@@ -5,6 +5,7 @@ export type TerminalData = TerminalConstructorData<Level[]>;
 
 export interface Level {
 	color: Color2[];
+	isError: boolean;
 	name: string;
 }
 
