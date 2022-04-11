@@ -96,7 +96,20 @@ export default class Terminal {
 			output += "[ ";
 			if (this.data.showDate) output += levelColor(`${time.getDate()}d/${time.getMonth()}m/${time.getFullYear()}y`) + " ";
 			if (this.data.showDate && this.data.showTimestamp) output += "| ";
-			if (this.data.showTimestamp) output += levelColor(`${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}.${time.getMilliseconds()}`) + " ";
+
+			if (this.data.showTimestamp) {
+				const hours = time.getHours();
+
+				output += levelColor(
+					`${
+						this.data.use24HourClock || !(hours >= 13 || hours === 0) ? hours : Math.abs(hours - 12)
+					}:${time.getMinutes()}:${time.getSeconds()}.${time.getMilliseconds()}`
+				);
+
+				if (!this.data.use24HourClock) output += levelColor(hours >= 13 ? " PM" : " AM");
+				output += " ";
+			}
+
 			output += "]\t";
 		}
 
