@@ -90,8 +90,21 @@ export default class Terminal<L extends Level[]> {
 			showTimestampRelativeToLastLog: true
 		};
 
+		let logger: object = {};
+
 		this.startTime = new Date();
 		this.timeInLastLog = this.startTime;
 		this.data = data ? Object.assign({}, defaultData, data) : defaultData;
+
+		for (const level of this.data.levels) {
+			logger = {
+				...logger,
+				[level.name]: (message: string) => {
+					this._log(level, message);
+				}
+			};
+		}
+
+		this.log = logger as Record<L[number]["name"], (message: string) => void>;
 	}
 }
