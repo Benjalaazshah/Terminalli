@@ -48,7 +48,7 @@ export default class Terminal<L extends Level[]> {
 			return formattedChangeInTime;
 		}
 
-		for (let i = 1; i <= level.color.length; i++) levelColor = levelColor()[level.color[i]];
+		for (let i = 1; i < level.color.length; i++) levelColor = levelColor()[level.color[i]];
 
 		// Should look like: [ ERROR ]
 		if (this.data.showLevelName) output += `[ ${levelColor(level.name)} ]\t`;
