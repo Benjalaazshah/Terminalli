@@ -100,7 +100,7 @@ export default class Terminal {
 				const unitCount = Math.floor(remainder / unitValueInMilliseconds);
 
 				remainder = remainder % unitValueInMilliseconds;
-				formattedChangeInTime += unitCount !== 0 ? levelColor(prefix + unitCount + unitName) + " " : "";
+				formattedChangeInTime += unitCount !== 0 ? levelColor(prefix + unitCount + unitName) + " " : unitValueInMilliseconds === 1 ? levelColor(prefix + "0") + " " : "";
 			}
 
 			addUnitOfTime(31536000000, "y"); // YEARS
