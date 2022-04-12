@@ -1,6 +1,6 @@
 {
 	"name": "terminalli",
-	"version": "1.0.1",
+	"version": "1.1.0",
 	"description": "This package adds helpful timestamps to your logs to help you know when things happen. It is customizable as well!",
 	"main": "./sources/index.ts",
 	"scripts": {
