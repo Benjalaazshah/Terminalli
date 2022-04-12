@@ -16,6 +16,8 @@ This is not a feature-rich package. None the less, features include:
 -   Ability to have _relative_ timestamps. These include timestamps relative to when the previous message was logged to the console.
 -   Being able to add or remove any of these types of timestamps from your logs.
 -   Having the ability to log errors. These error logs are highlighted in red.
+-   ![[ NEW ]](https://img.shields.io/badge/-NEW-800000.svg?style=square) You are now able to have timestamps in both the 12 hour and 24 hour clock.
+-   ![[ NEW ]](https://img.shields.io/badge/-NEW-800000.svg?style=square) You now can display dates in both "month before day" and "day before month" formats.
 
 ## CUSTOMIZABILITY
 
