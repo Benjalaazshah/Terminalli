@@ -18,6 +18,17 @@ export interface TerminalData {
 	 */
 	showLevelName: boolean;
 
+	/**
+	 * If true, the date on each message logged to the console (which only exists if `showDate` is also true) will have the month before the day.
+	 *
+	 * **Day before month:**
+	 *
+	 * `[ 20d/12m/1999y ] loy`
+	 *
+	 * **Month before day:**
+	 *
+	 * `[ 12m/20d/1999y ] loy`
+	 */
 	showMonthBeforeDay: boolean;
 
 	/**
@@ -41,6 +52,17 @@ export interface TerminalData {
 	 */
 	showTimestampRelativeToLastLog: boolean;
 
+	/**
+	 * If true, the timestamp on each message logged to the console (which only exists if `showTimestamp` is true) will be displayed using the 24 hour clock instead of the 12 hour clock.
+	 *
+	 * **24 hour clock:**
+	 *
+	 * `[ 13:27:55.33 ] pow`
+	 *
+	 * **12 hour clock:**
+	 *
+	 * `[ 1:27:55.33 PM ] pow`
+	 */
 	use24HourClock: boolean;
 }
 
