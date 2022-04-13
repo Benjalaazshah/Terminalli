@@ -1,9 +1,8 @@
 # TERMINALLI
 
-![Install](https://img.shields.io/badge/INSTALL-npm%20i%20termialli-ff0000.svg?style=flat-square&logo=npm)
-![Size](https://img.shields.io/github/repo-size/Benjalaazshah/Terminalli?color=000080&label=SIZE&style=flat-square)
-![License](https://img.shields.io/github/license/Benjalaazshah/Terminalli?color=008000&label=LICENSE&style=flat-square)
-![Version](https://img.shields.io/npm/v/terminalli?color=ff8000&label=VERSION&style=flat-square)
+[![Install](https://img.shields.io/badge/INSTALL-npm%20i%20termialli-ff0000.svg?style=flat-square&logo=npm)](https://www.npmjs.com/package/terminalli)
+[![License](https://img.shields.io/github/license/Benjalaazshah/Terminalli?color=008000&label=LICENSE&style=flat-square)](./LICENSE)
+[![Version](https://img.shields.io/npm/v/terminalli?color=ff8000&label=VERSION&style=flat-square)](./CHANGELOG.md)
 
 This NPM package adds helpful timestamps to your logs to help you know when things happen. It is customizable as well!
 
@@ -17,6 +16,8 @@ This is not a feature-rich package. None the less, features include:
 -   Ability to have _relative_ timestamps. These include timestamps relative to when the previous message was logged to the console.
 -   Being able to add or remove any of these types of timestamps from your logs.
 -   Having the ability to log errors. These error logs are highlighted in red.
+-   ![[ NEW ]](https://img.shields.io/badge/-NEW-800000.svg?style=square) You are now able to have timestamps in both the 12 hour and 24 hour clocks.
+-   ![[ NEW ]](https://img.shields.io/badge/-NEW-800000.svg?style=square) You now can display dates in both "month before day" and "day before month" formats.
 
 ## CUSTOMIZABILITY
 

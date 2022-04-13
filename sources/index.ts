@@ -24,6 +24,10 @@ export default class Terminal<L extends Level[]> {
 	private _log(level: Level, message: string) {
 		const time = new Date();
 		let levelColor = C[level.color[0]];
+	private _log(level: "ERROR" | "LOG", message: string) {
+		const { showDate, showLevelName, showMonthBeforeDay, showRelativeTimestamp, showTimestamp, showTimestampRelativeToLastLog, use24HourClock } = this.data;
+		const time = new Date();
+		let monthPositionSwitch = showMonthBeforeDay;
 		let output = "";
 
 		function formatChangeInTime(from: Date, prefix: string) {
@@ -34,7 +38,7 @@ export default class Terminal<L extends Level[]> {
 				const unitCount = Math.floor(remainder / unitValueInMilliseconds);
 
 				remainder = remainder % unitValueInMilliseconds;
-				formattedChangeInTime += unitCount !== 0 ? levelColor(prefix + unitCount + unitName) + " " : "";
+				formattedChangeInTime += unitCount !== 0 ? levelColor(prefix + unitCount + unitName) + " " : unitValueInMilliseconds === 1 ? levelColor(prefix + "0") + " " : "";
 			}
 
 			addUnitOfTime(31536000000, "y"); // YEARS
@@ -52,22 +56,40 @@ export default class Terminal<L extends Level[]> {
 
 		// Should look like: [ ERROR ]
 		if (this.data.showLevelName) output += `[ ${levelColor(level.name)} ]\t`;
+		function formatMonth() {
+			monthPositionSwitch = !monthPositionSwitch;
+			return monthPositionSwitch ? "" : `${time.getMonth()}m/`;
+		}
 
-		// Should look like: [ 12d/5m/2011y | 13:43:10.23 ]
-		if (this.data.showDate || this.data.showTimestamp) {
+		// Should look like: [ ERROR ]
+		if (showLevelName) output += `[ ${levelColor(level)} ]\t`;
+
+		// Should look like: [ 12d/5m/2011y | 13:43:10.23 ] or [ 5m/12d/2011y | 1:43:10.23 PM ]
+		if (showDate || showTimestamp) {
 			output += "[ ";
-			if (this.data.showDate) output += levelColor(`${time.getDate()}d/${time.getMonth()}m/${time.getFullYear()}y`) + " ";
-			if (this.data.showDate && this.data.showTimestamp) output += "| ";
-			if (this.data.showTimestamp) output += levelColor(`${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}.${time.getMilliseconds()}`) + " ";
+			if (showDate) output += levelColor(`${formatMonth() + time.getDate()}d/${formatMonth()}${time.getFullYear()}y`) + " ";
+			if (showDate && showTimestamp) output += "| ";
+
+			if (showTimestamp) {
+				const hours = time.getHours();
+
+				output +=
+					levelColor(
+						`${use24HourClock || !(hours >= 13 || hours === 0) ? hours : Math.abs(hours - 12)}:${time.getMinutes()}:${time.getSeconds()}.${time.getMilliseconds()}`
+					) + " ";
+
+				if (!use24HourClock) output += levelColor(hours >= 13 ? "PM" : "AM") + " ";
+			}
+
 			output += "]\t";
 		}
 
 		// Should look like: [ 5y 1m 15h 51min 7s 300ms | +31min +5s +903ms ]
-		if (this.data.showRelativeTimestamp || this.data.showTimestampRelativeToLastLog) {
+		if (showRelativeTimestamp || showTimestampRelativeToLastLog) {
 			output += "[ ";
-			if (this.data.showRelativeTimestamp) output += formatChangeInTime(this.startTime, "");
-			if (this.data.showRelativeTimestamp && this.data.showTimestampRelativeToLastLog) output += "| ";
-			if (this.data.showTimestampRelativeToLastLog) output += formatChangeInTime(this.timeInLastLog, "+");
+			if (showRelativeTimestamp) output += formatChangeInTime(this.startTime, "");
+			if (showRelativeTimestamp && showTimestampRelativeToLastLog) output += "| ";
+			if (showTimestampRelativeToLastLog) output += formatChangeInTime(this.timeInLastLog, "+");
 			output += "]\t";
 		}
 
@@ -85,9 +107,11 @@ export default class Terminal<L extends Level[]> {
 
 			showDate: true,
 			showLevelName: false,
+			showMonthBeforeDay: false,
 			showRelativeTimestamp: true,
 			showTimestamp: true,
-			showTimestampRelativeToLastLog: true
+			showTimestampRelativeToLastLog: true,
+			use24HourClock: true
 		};
 
 		let logger: object = {};
