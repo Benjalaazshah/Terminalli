@@ -22,11 +22,9 @@ export default class Terminal<L extends Level[]> {
 	timeInLastLog: Date;
 
 	private _log(level: Level, message: string) {
-		const time = new Date();
-		let levelColor = C[level.color[0]];
-	private _log(level: "ERROR" | "LOG", message: string) {
 		const { showDate, showLevelName, showMonthBeforeDay, showRelativeTimestamp, showTimestamp, showTimestampRelativeToLastLog, use24HourClock } = this.data;
 		const time = new Date();
+		let levelColor = C[level.color[0]];
 		let monthPositionSwitch = showMonthBeforeDay;
 		let output = "";
 
@@ -55,14 +53,14 @@ export default class Terminal<L extends Level[]> {
 		for (let i = 1; i < level.color.length; i++) levelColor = levelColor()[level.color[i]];
 
 		// Should look like: [ ERROR ]
-		if (this.data.showLevelName) output += `[ ${levelColor(level.name)} ]\t`;
+		if (showLevelName) output += `[ ${levelColor(level.name)} ]\t`;
 		function formatMonth() {
 			monthPositionSwitch = !monthPositionSwitch;
 			return monthPositionSwitch ? "" : `${time.getMonth()}m/`;
 		}
 
 		// Should look like: [ ERROR ]
-		if (showLevelName) output += `[ ${levelColor(level)} ]\t`;
+		if (showLevelName) output += `[ ${levelColor(level.name)} ]\t`;
 
 		// Should look like: [ 12d/5m/2011y | 13:43:10.23 ] or [ 5m/12d/2011y | 1:43:10.23 PM ]
 		if (showDate || showTimestamp) {
