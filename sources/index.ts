@@ -1,7 +1,7 @@
 import C from "kleur";
 import { Level, TerminalConstructorData, TerminalData } from "./types";
 
-export const basicLevels = [
+export const basicLevels: Level<"error" | "trace">[] = [
 	{ color: ["black", "bold"], name: "trace", isError: false },
 	{ color: ["red", "underline"], name: "error", isError: true }
 ];
