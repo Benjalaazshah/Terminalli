@@ -1,19 +1,19 @@
 import { Kleur } from "kleur";
 
 export type Color2 = keyof Kleur;
-export type TerminalData = TerminalConstructorData<Level[]>;
+export type TerminalData = TerminalConstructorData<string>;
 
-export interface Level {
+export interface Level<L extends string> {
 	color: Color2[];
 	isError: boolean;
-	name: string;
+	name: L;
 }
 
 /**
  * Customization options for the `Terminal` class.
  */
-export interface TerminalConstructorData<L extends Level[]> {
-	levels: L;
+export interface TerminalConstructorData<L extends string> {
+	levels: Level<L>[];
 
 	/**
 	 * If true, each message logged to the terminal will have a date corresponding to when the message was logged attached to it.

@@ -4,12 +4,12 @@ import { Level, TerminalConstructorData, TerminalData } from "./types";
 /**
  * Represents the console.
  */
-export default class Terminal<L extends Level[]> {
+export default class Terminal<L extends string> {
 	/**
 	 * Customization options that were inputted when this terminal instance was created.
 	 */
 	readonly data: TerminalData;
-	readonly log: Record<L[number]["name"], (message: string) => void>;
+	readonly log: Record<L, (message: string) => void>;
 
 	/**
 	 * The time when this terminal instance was created.
@@ -21,7 +21,7 @@ export default class Terminal<L extends Level[]> {
 	 */
 	timeInLastLog: Date;
 
-	private _log(level: Level, message: string) {
+	private _log(level: Level<string>, message: string) {
 		const { showDate, showLevelName, showMonthBeforeDay, showRelativeTimestamp, showTimestamp, showTimestampRelativeToLastLog, use24HourClock } = this.data;
 		const time = new Date();
 		let levelColor = C[level.color[0]];
@@ -127,6 +127,6 @@ export default class Terminal<L extends Level[]> {
 			};
 		}
 
-		this.log = logger as Record<L[number]["name"], (message: string) => void>;
+		this.log = logger as Record<L, (message: string) => void>;
 	}
 }
