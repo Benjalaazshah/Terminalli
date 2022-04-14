@@ -102,12 +102,7 @@ export default class Terminal<L extends string> {
 	}
 
 	constructor(data: TerminalConstructorData<L>) {
-		const defaultData: TerminalData = {
-			levels: [
-				{ color: ["black", "bold"], name: "trace", isError: false },
-				{ color: ["red", "underline"], name: "error", isError: true }
-			],
-
+		const defaultData: Omit<TerminalData, "levels"> = {
 			showDate: true,
 			showLevelName: false,
 			showMonthBeforeDay: false,
