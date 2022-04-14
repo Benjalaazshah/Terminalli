@@ -1,6 +1,11 @@
 import C from "kleur";
 import { Level, TerminalConstructorData, TerminalData } from "./types";
 
+export const basicLevels = [
+	{ color: ["black", "bold"], name: "trace", isError: false },
+	{ color: ["red", "underline"], name: "error", isError: true }
+];
+
 /**
  * Represents the console.
  */
