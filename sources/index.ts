@@ -96,7 +96,7 @@ export default class Terminal<L extends string> {
 		this.timeInLastLog = time;
 	}
 
-	constructor(data?: TerminalConstructorData<L>) {
+	constructor(data: TerminalConstructorData<L>) {
 		const defaultData: TerminalData = {
 			levels: [
 				{ color: ["black", "bold"], name: "trace", isError: false },
@@ -116,7 +116,7 @@ export default class Terminal<L extends string> {
 
 		this.startTime = new Date();
 		this.timeInLastLog = this.startTime;
-		this.data = data ? Object.assign({}, defaultData, data) : defaultData;
+		this.data = Object.assign({}, defaultData, data);
 
 		for (const level of this.data.levels) {
 			logger = {
