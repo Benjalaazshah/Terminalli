@@ -96,7 +96,7 @@ export default class Terminal<L extends string> {
 		this.timeInLastLog = time;
 	}
 
-	constructor(data?: Partial<TerminalConstructorData<L>>) {
+	constructor(data?: TerminalConstructorData<L>) {
 		const defaultData: TerminalData = {
 			levels: [
 				{ color: ["black", "bold"], name: "trace", isError: false },
