@@ -1,6 +1,15 @@
 import C from "kleur";
 import { Level, TerminalConstructorData, TerminalData } from "./types";
 
+export const advancedLevels: Level<"debug" | "error" | "fatal" | "info" | "trace" | "warn">[] = [
+	{ color: ["black", "bold"], name: "trace", isError: false },
+	{ color: ["black", "bold", "underline"], name: "debug", isError: false },
+	{ color: ["blue", "bold"], name: "info", isError: false },
+	{ color: ["yellow", "dim", "underline"], name: "warn", isError: true },
+	{ color: ["red", "underline"], name: "error", isError: true },
+	{ color: ["bgRed", "white", "bold"], name: "fatal", isError: true }
+];
+
 export const basicLevels: Level<"error" | "trace">[] = [
 	{ color: ["black", "bold"], name: "trace", isError: false },
 	{ color: ["red", "underline"], name: "error", isError: true }
