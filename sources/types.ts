@@ -13,6 +13,7 @@ export interface Level<L extends string> {
  * Customization options for the `Terminal` class.
  */
 export interface TerminalConstructorData<L extends string> {
+	capitalizeLevelName?: boolean;
 	levels: Level<L>[];
 
 	/**

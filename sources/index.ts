@@ -38,7 +38,9 @@ export default class Terminal<L extends string> {
 	timeInLastLog: Date;
 
 	private _log(level: Level<string>, message: string) {
-		const { showDate, showLevelName, showMonthBeforeDay, showRelativeTimestamp, showTimestamp, showTimestampRelativeToLastLog, use24HourClock } = this.data;
+		const { capitalizeLevelName, showDate, showLevelName, showMonthBeforeDay, showRelativeTimestamp, showTimestamp, showTimestampRelativeToLastLog, use24HourClock } =
+			this.data;
+
 		const time = new Date();
 		const color = getColorApplier("TEXT", "white");
 		const colorBG = getColorApplier("BACKGROUND", "bgBlack");
@@ -85,8 +87,8 @@ export default class Terminal<L extends string> {
 			return color;
 		}
 
-		// Should look like: [ ERROR ]
-		if (showLevelName) output += `[${colorBG(" " + color(level.name) + " ")}]\t`;
+		// Should look like: [ ERROR ] or [ error ]
+		if (showLevelName) output += `[${colorBG(" " + color(capitalizeLevelName ? level.name.toUpperCase() : level.name) + " ")}]\t`;
 
 		// Should look like: [ 12d/5m/2011y | 13:43:10.23 ] or [ 5m/12d/2011y | 1:43:10.23 PM ]
 		if (showDate || showTimestamp) {
@@ -126,6 +128,7 @@ export default class Terminal<L extends string> {
 
 	constructor(data: TerminalConstructorData<L>) {
 		const defaultData: Omit<TerminalData, "levels"> = {
+			capitalizeLevelName: true,
 			showDate: true,
 			showLevelName: false,
 			showMonthBeforeDay: false,
