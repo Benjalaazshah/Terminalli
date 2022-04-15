@@ -64,14 +64,12 @@ export default class Terminal<L extends string> {
 			return formattedChangeInTime;
 		}
 
-		for (let i = 1; i < level.color.length; i++) levelColor = levelColor()[level.color[i]];
-
-		// Should look like: [ ERROR ]
-		if (showLevelName) output += `[ ${levelColor(level.name)} ]\t`;
 		function formatMonth() {
 			monthPositionSwitch = !monthPositionSwitch;
 			return monthPositionSwitch ? "" : `${time.getMonth()}m/`;
 		}
+
+		for (let i = 1; i < level.color.length; i++) levelColor = levelColor()[level.color[i]];
 
 		// Should look like: [ ERROR ]
 		if (showLevelName) output += `[ ${levelColor(level.name)} ]\t`;
