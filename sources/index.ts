@@ -1,5 +1,5 @@
 import C from "kleur";
-import { Level, TerminalConstructorData, TerminalData } from "./types";
+import { Color, Level, TerminalConstructorData, TerminalData } from "./types";
 
 export { Level, TerminalConstructorData, TerminalData };
 
@@ -40,19 +40,20 @@ export default class Terminal<L extends string> {
 	private _log(level: Level<string>, message: string) {
 		const { showDate, showLevelName, showMonthBeforeDay, showRelativeTimestamp, showTimestamp, showTimestampRelativeToLastLog, use24HourClock } = this.data;
 		const time = new Date();
-		let levelColor = C[level.color[0]];
+		const color = getColorApplier("TEXT", "white");
+		const colorBG = getColorApplier("BACKGROUND", "bgBlack");
 		let monthPositionSwitch = showMonthBeforeDay;
 		let output = "";
 
 		function formatChangeInTime(from: Date, prefix: string) {
-			let formattedChangeInTime = "";
+			let formattedChangeInTime = " ";
 			let remainder = time.getTime() - from.getTime();
 
 			function addUnitOfTime(unitValueInMilliseconds: number, unitName: string) {
 				const unitCount = Math.floor(remainder / unitValueInMilliseconds);
 
 				remainder = remainder % unitValueInMilliseconds;
-				formattedChangeInTime += unitCount !== 0 ? levelColor(prefix + unitCount + unitName) + " " : unitValueInMilliseconds === 1 ? levelColor(prefix + "0") + " " : "";
+				formattedChangeInTime += unitCount !== 0 ? color(prefix + unitCount + unitName) + " " : unitValueInMilliseconds === 1 ? color(prefix + "0") + " " : "";
 			}
 
 			addUnitOfTime(31536000000, "y"); // YEARS
@@ -63,7 +64,7 @@ export default class Terminal<L extends string> {
 			addUnitOfTime(1000, "s"); // SECONDS
 			addUnitOfTime(1, "ms"); // MILLISECONDS
 
-			return formattedChangeInTime;
+			return colorBG(formattedChangeInTime);
 		}
 
 		function formatMonth() {
@@ -71,26 +72,39 @@ export default class Terminal<L extends string> {
 			return monthPositionSwitch ? "" : `${time.getMonth()}m/`;
 		}
 
-		for (let i = 1; i < level.color.length; i++) levelColor = levelColor()[level.color[i]];
+		function getColorApplier(colorType: "BACKGROUND" | "TEXT", altColor: Color) {
+			const colors = level.color.filter((colorString) => {
+				const isBackground = colorString.startsWith("bg");
+
+				return colorType === "BACKGROUND" ? isBackground : !isBackground;
+			});
+
+			let color = C[colors[0] || altColor];
+
+			for (let i = 1; i < colors.length; i++) color = color()[colors[i]];
+			return color;
+		}
 
 		// Should look like: [ ERROR ]
-		if (showLevelName) output += `[ ${levelColor(level.name)} ]\t`;
+		if (showLevelName) output += `[${colorBG(" " + color(level.name) + " ")}]\t`;
 
 		// Should look like: [ 12d/5m/2011y | 13:43:10.23 ] or [ 5m/12d/2011y | 1:43:10.23 PM ]
 		if (showDate || showTimestamp) {
-			output += "[ ";
-			if (showDate) output += levelColor(`${formatMonth() + time.getDate()}d/${formatMonth()}${time.getFullYear()}y`) + " ";
-			if (showDate && showTimestamp) output += "| ";
+			output += "[";
+			if (showDate) output += colorBG(" " + color(`${formatMonth() + time.getDate()}d/${formatMonth()}${time.getFullYear()}y`) + " ");
+			if (showDate && showTimestamp) output += "|";
 
 			if (showTimestamp) {
 				const hours = time.getHours();
 
-				output +=
-					levelColor(
-						`${use24HourClock || !(hours >= 13 || hours === 0) ? hours : Math.abs(hours - 12)}:${time.getMinutes()}:${time.getSeconds()}.${time.getMilliseconds()}`
-					) + " ";
-
-				if (!use24HourClock) output += levelColor(hours >= 13 ? "PM" : "AM") + " ";
+				output += colorBG(
+					" " +
+						color(
+							`${use24HourClock || !(hours >= 13 || hours === 0) ? hours : Math.abs(hours - 12)}:${time.getMinutes()}:${time.getSeconds()}.${time.getMilliseconds()}`
+						) +
+						" " +
+						(use24HourClock ? "" : color(hours >= 13 ? "PM" : "AM") + " ")
+				);
 			}
 
 			output += "]\t";
@@ -98,9 +112,9 @@ export default class Terminal<L extends string> {
 
 		// Should look like: [ 5y 1m 15h 51min 7s 300ms | +31min +5s +903ms ]
 		if (showRelativeTimestamp || showTimestampRelativeToLastLog) {
-			output += "[ ";
+			output += "[";
 			if (showRelativeTimestamp) output += formatChangeInTime(this.startTime, "");
-			if (showRelativeTimestamp && showTimestampRelativeToLastLog) output += "| ";
+			if (showRelativeTimestamp && showTimestampRelativeToLastLog) output += "|";
 			if (showTimestampRelativeToLastLog) output += formatChangeInTime(this.timeInLastLog, "+");
 			output += "]\t";
 		}
