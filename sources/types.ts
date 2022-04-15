@@ -15,6 +15,7 @@ export interface Level<L extends string> {
 export interface TerminalConstructorData<L extends string> {
 	capitalizeLevelName?: boolean;
 	levels: Level<L>[];
+	showArrow?: boolean;
 
 	/**
 	 * If true, each message logged to the terminal will have a date corresponding to when the message was logged attached to it.

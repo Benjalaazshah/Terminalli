@@ -38,8 +38,17 @@ export default class Terminal<L extends string> {
 	timeInLastLog: Date;
 
 	private _log(level: Level<string>, message: string) {
-		const { capitalizeLevelName, showDate, showLevelName, showMonthBeforeDay, showRelativeTimestamp, showTimestamp, showTimestampRelativeToLastLog, use24HourClock } =
-			this.data;
+		const {
+			capitalizeLevelName,
+			showArrow,
+			showDate,
+			showLevelName,
+			showMonthBeforeDay,
+			showRelativeTimestamp,
+			showTimestamp,
+			showTimestampRelativeToLastLog,
+			use24HourClock
+		} = this.data;
 
 		const time = new Date();
 		const color = getColorApplier("TEXT", "white");
@@ -109,8 +118,10 @@ export default class Terminal<L extends string> {
 				);
 			}
 
-			output += "]\t";
+			output += "]";
 		}
+
+		if ((showDate || showTimestamp) && (showRelativeTimestamp || showTimestampRelativeToLastLog)) output += "\t";
 
 		// Should look like: [ 5y 1m 15h 51min 7s 300ms | +31min +5s +903ms ]
 		if (showRelativeTimestamp || showTimestampRelativeToLastLog) {
@@ -118,10 +129,13 @@ export default class Terminal<L extends string> {
 			if (showRelativeTimestamp) output += formatChangeInTime(this.startTime, "");
 			if (showRelativeTimestamp && showTimestampRelativeToLastLog) output += "|";
 			if (showTimestampRelativeToLastLog) output += formatChangeInTime(this.timeInLastLog, "+");
-			output += "]\t";
+			output += "]";
 		}
 
-		output += `${message}\n`;
+		// Should look like: >>
+		if (showArrow) output += ` ${C.bold(">>")}\t`;
+
+		output += `\t${message}\n`;
 		(level.isError ? process.stderr : process.stdout).write(output);
 		this.timeInLastLog = time;
 	}
@@ -129,6 +143,7 @@ export default class Terminal<L extends string> {
 	constructor(data: TerminalConstructorData<L>) {
 		const defaultData: Omit<TerminalData, "levels"> = {
 			capitalizeLevelName: true,
+			showArrow: true,
 			showDate: true,
 			showLevelName: false,
 			showMonthBeforeDay: false,
