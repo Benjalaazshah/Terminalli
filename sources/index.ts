@@ -122,12 +122,16 @@ export default class Terminal<L extends string> {
 		};
 
 		let logger: object = {};
+		let registeredLevels: string[] = [];
 
 		this.startTime = new Date();
 		this.timeInLastLog = this.startTime;
 		this.data = Object.assign({}, defaultData, data);
 
 		for (const level of this.data.levels) {
+			if (registeredLevels.some((value) => value === level.name)) throw new Error(`Duplicate level name "${level.name}".`);
+			registeredLevels = [...registeredLevels, level.name];
+
 			logger = {
 				...logger,
 				[level.name]: (message: string) => {
