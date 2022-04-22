@@ -143,14 +143,14 @@ export default class Terminal<L extends string> {
 	constructor(data: TerminalConstructorData<L>) {
 		const defaultData: Omit<TerminalData, "levels"> = {
 			capitalizeLevelName: true,
-			showArrow: true,
-			showDate: true,
+			showArrow: false,
+			showDate: false,
 			showLevelName: false,
 			showMonthBeforeDay: false,
-			showRelativeTimestamp: true,
+			showRelativeTimestamp: false,
 			showTimestamp: true,
 			showTimestampRelativeToLastLog: true,
-			use24HourClock: true
+			use24HourClock: false
 		};
 
 		let logger: object = {};
