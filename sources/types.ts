@@ -1,7 +1,7 @@
 import { Kleur } from "kleur";
 
 export type Color = keyof Kleur;
-export type TerminalData = Required<TerminalConstructorData<string>>;
+export type TerminalData = Readonly<Required<TerminalConstructorData<string>>>;
 
 export interface Level<L extends string> {
 	color: Color[];
