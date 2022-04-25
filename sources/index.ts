@@ -3,11 +3,31 @@ import { Color, Level, TerminalConstructorData, TerminalData } from "./types";
 
 export { Level, TerminalConstructorData, TerminalData };
 
+/**
+ * A couple of preset levels. This is useful for a basic application.
+ *
+ * **Levels include:**
+ *
+ * -   error
+ * -   trace
+ */
 export const basicLevels: Level<"error" | "trace">[] = [
 	{ color: ["red", "underline"], name: "error", isError: true },
 	{ color: ["black", "bold"], name: "trace", isError: false }
 ];
 
+/**
+ * A list of preset levels that you can use to log messages of various levels of importance.
+ *
+ * **Levels include:**
+ *
+ * -   debug
+ * -   error
+ * -   fatal
+ * -   info
+ * -   trace
+ * -   warn
+ */
 export const advancedLevels: Level<"debug" | "error" | "fatal" | "info" | "trace" | "warn">[] = [
 	...basicLevels,
 	{ color: ["black", "bold", "underline"], isError: false, name: "debug" },
@@ -18,12 +38,26 @@ export const advancedLevels: Level<"debug" | "error" | "fatal" | "info" | "trace
 
 /**
  * Represents the console.
+ *
+ * @param data Any customization options for the terminal.
  */
 export default class Terminal<L extends string> {
 	/**
 	 * Customization options that were inputted when this terminal instance was created.
 	 */
 	readonly data: TerminalData;
+
+	/**
+	 * Represents the logger. Any methods of `log` logs a message to a specific level.
+	 *
+	 * @example
+	 *
+	 * ```
+	 * log.error("faz");
+	 * ```
+	 *
+	 * Logs "faz" to the `error` level if such a level even exists.
+	 */
 	readonly log: Record<L, (message: string) => void>;
 
 	/**
@@ -165,6 +199,7 @@ export default class Terminal<L extends string> {
 
 			logger = {
 				...logger,
+
 				[level.name]: (message: string) => {
 					this._log(level, message);
 				}
