@@ -6,9 +6,14 @@ import { Kleur } from "kleur";
 export type Color = keyof Kleur;
 
 /**
+ * Make every property and sub-property read-only.
+ */
+export type Locked<T> = { readonly [K in keyof T]: T[K] extends object ? Locked<T[K]> : T[K] };
+
+/**
  * Same as `TerminalConstructorData<string>`, but all properties are required and read-only. This interface is used for the `data` property in the `Terminal` class.
  */
-export type TerminalData = Readonly<Required<TerminalConstructorData<string>>>;
+export type TerminalData = Locked<Required<TerminalConstructorData<string>>>;
 
 /**
  * Represents a category to which you can log. Levels are usually used as categories of importance.

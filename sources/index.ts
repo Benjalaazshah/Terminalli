@@ -160,7 +160,7 @@ export default class Terminal<L extends string> {
 		this.timeInLastLog = this.startTime;
 		this.data = Object.assign({}, defaultData, data);
 
-		for (const level of this.data.levels) {
+		for (const level of data.levels) {
 			if (registeredLevels.some((value) => value === level.name)) throw new Error(`Duplicate level name "${level.name}".`);
 			registeredLevels = [...registeredLevels, level.name];
 
