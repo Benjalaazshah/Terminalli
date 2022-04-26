@@ -1,7 +1,7 @@
 {
 	"name": "terminalli",
 	"version": "1.1.0",
-	"description": "This package adds helpful timestamps to your logs to help you know when things happen. It is customizable as well!",
+	"description": "Attach timestamps to your logs, organize your logs into custom categories (levels) and more.",
 	"main": "./sources/index.ts",
 	"files": [
 		"CHANGELOG.md",
@@ -21,6 +21,8 @@
 		"console",
 		"debug",
 		"debugger",
+		"level",
+		"levels",
 		"log",
 		"logs",
 		"logger",
