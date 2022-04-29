@@ -31,7 +31,7 @@ export const basicLevels: Level<"error" | "trace">[] = [
 export const advancedLevels: Level<"debug" | "error" | "fatal" | "info" | "trace" | "warn">[] = [
 	...basicLevels,
 	{ color: ["black", "bold", "underline"], isError: false, name: "debug" },
-	{ color: ["bgRed", "white", "bold"], isError: true, name: "fatal" },
+	{ color: ["bgRed", "white", "bold", "italic"], isError: true, name: "fatal" },
 	{ color: ["blue", "bold"], isError: false, name: "info" },
 	{ color: ["yellow", "dim", "underline"], isError: true, name: "warn" }
 ];
