@@ -59,7 +59,7 @@ terminal.log.debug("Initial log.");
 `debug` in this case is the name of one of the preset levels that you can log to. If you were logging an error, for example, you can use the `error` level.
 
 ```js
-terminal.log.error("Something happened. 🥶");
+terminal.log.error("Something happened.");
 ```
 
 ### **Output:**
@@ -94,9 +94,9 @@ const t3 = new Terminal({
 	showTimestamp: false
 });
 
-t1.log.warn("The fox is coming... 🦊");
-t2.log.warn("The fox is coming... 🦊");
-t3.log.warn("The fox is coming... 🦊");
+t1.log.warn("The fox is coming...");
+t2.log.warn("The fox is coming...");
+t3.log.warn("The fox is coming...");
 ```
 
 ### **Output:**
@@ -130,7 +130,7 @@ const terminal = new Terminal({
 	]
 });
 
-terminal.log.weather("🌞 Today will be 280°C (about the same as an oven).");
+terminal.log.weather("Today will be 280°C (about the same as an oven).");
 terminal.log.victory("The octopus has won.");
 ```
 
