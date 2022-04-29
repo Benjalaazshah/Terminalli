@@ -10,7 +10,7 @@ Still using `console.log` in 2022?! With Terminalli, you can attach timestamps t
 
 </div>
 
-`IMAGE #1`
+![TERMINALLI PREVIEW IMAGE](./media/terminalli_preview_image.svg "Preview Image")
 
 ## FEATURES
 
@@ -64,7 +64,7 @@ terminal.log.error("Something happened.");
 
 ### **Output:**
 
-`IMAGE #2`
+![OUTPUT IMAGE](./media/basic_usage_output_image.svg "Output")
 
 ## CUSTOMIZABILITY
 
@@ -101,7 +101,7 @@ t3.log.warn("The fox is coming...");
 
 ### **Output:**
 
-`IMAGE #3`
+![OUTPUT IMAGE](./media/customizability_output_image.svg "Output")
 
 ## CUSTOM LEVELS
 
@@ -136,7 +136,7 @@ terminal.log.victory("The octopus has won.");
 
 ### **Output:**
 
-`IMAGE #4`
+![OUTPUT IMAGE](./media/custom_levels_output_image.svg "Output")
 
 ---
 
