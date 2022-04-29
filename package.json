@@ -1,6 +1,6 @@
 {
 	"name": "terminalli",
-	"version": "1.1.0",
+	"version": "2.0.0",
 	"description": "Attach timestamps to your logs, organize your logs into custom categories (levels) and more.",
 	"main": "./sources/index.ts",
 	"files": [
