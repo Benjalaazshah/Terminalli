@@ -1,7 +1,7 @@
 import C from "kleur";
-import { Color, Level, TerminalConstructorData, TerminalData } from "./types";
+import { Color, Level, Locked, TerminalConstructorData, TerminalData } from "./types";
 
-export { Level, TerminalConstructorData, TerminalData };
+export { Level, Locked, TerminalConstructorData, TerminalData };
 
 /**
  * A couple of preset levels. This is useful for a basic application.
