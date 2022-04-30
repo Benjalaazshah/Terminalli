@@ -1,10 +1,18 @@
-# WHAT'S NEW IN v1.1.0
+# WHAT'S NEW IN v2.0.0
 
-## NEW FEATURES
+## NEW MAJOR FEATURES
 
--   You can now display timestamps using the 12 hour clock.
--   You can now display dates with the month before the day.
+-   You now have the ability to log to up to 6 different preset levels.
+-   Creating custom levels is now possible.
+-   You can now leave the level name attached to logs to be lowercase.
+-   You are now able to add an arrow between the timestamp of your logs the message of your logs.
 
-## BUG FIXES
+## NEW MINOR FEATURES
 
--   Relative timestamps now display `[ 0 | +0 ]` instead of `[ | ]`.
+-   Added new type export `Color`.
+-   Added new type export `Level`.
+-   Added new type export `Locked`.
+
+## CHANGES
+
+-   Changed defaults for parameter `data` of the `Terminal` class.
