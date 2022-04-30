@@ -5,7 +5,7 @@
 -   You now have the ability to log to up to 6 different preset levels.
 -   Creating custom levels is now possible.
 -   You can now leave the level name attached to logs to be lowercase.
--   You are now able to add an arrow between the timestamp of your logs the message of your logs.
+-   You are now able to add an arrow between the timestamp of your logs and the message of your logs.
 
 ## NEW MINOR FEATURES
 
