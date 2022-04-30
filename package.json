@@ -19,6 +19,7 @@
 	},
 	"keywords": [
 		"console",
+		"console.log",
 		"debug",
 		"debugger",
 		"level",
