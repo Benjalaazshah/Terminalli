@@ -138,6 +138,10 @@ terminal.log.victory("The octopus has won.");
 
 ![OUTPUT IMAGE](./media/custom_levels_output_image.svg "Output")
 
+## CONTRIBUTING
+
+Found a big fat bug in the code? Have a feature suggestion? [Open an issue here](https://github.com/Benjalaazshah/Terminalli/issues "View all issues on GitHub")! Pull requests are also welcome. Create a pull request [here](https://github.com/Benjalaazshah/Terminalli/pulls "View all pull requests on GitHub")!
+
 ---
 
 <div align="center">
