@@ -38,8 +38,6 @@ export const advancedLevels: Level<"debug" | "error" | "fatal" | "info" | "trace
 
 /**
  * Represents the console.
- *
- * @param data Any customization options for the terminal.
  */
 export default class Terminal<L extends string> {
 	/**
@@ -173,6 +171,11 @@ export default class Terminal<L extends string> {
 		this.timeInLastLog = time;
 	}
 
+	/**
+	 * Represents the console.
+	 *
+	 * @param data Any customization options for the terminal.
+	 */
 	constructor(data: TerminalConstructorData<L>) {
 		const defaultData: Omit<TerminalData, "levels"> = {
 			capitalizeLevelName: true,
