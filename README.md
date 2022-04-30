@@ -1,6 +1,6 @@
 <div align="center">
 
-# ![TERMINALLI](./media/terminalli_logo.svg "Terminalli")
+# ![TERMINALLI](./media/logo.svg "Terminalli")
 
 [![[ INSTALL ]](https://img.shields.io/badge/INSTALL-npm%20i%20termialli-ff0000.svg?style=flat-square&logo=npm)](https://www.npmjs.com/package/terminalli "View NPM package")
 [![ LICENSE ](https://img.shields.io/github/license/Benjalaazshah/Terminalli?color=008000&label=LICENSE&style=flat-square)](./LICENSE "View license")
@@ -10,7 +10,7 @@ Still using `console.log` in 2022?! With Terminalli, you can attach timestamps t
 
 </div>
 
-![TERMINALLI PREVIEW IMAGE](./media/terminalli_preview_image.svg "Preview Image")
+![TERMINALLI PREVIEW IMAGE](./media/preview_image.svg "Preview Image")
 
 ## FEATURES
 
